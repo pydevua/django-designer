@@ -4,7 +4,12 @@ from django.conf import settings
 
 admin.autodiscover()
 
+def redirect2projects(request):
+    from django.http import HttpResponseRedirect
+    return HttpResponseRedirect('/projects/')
+
 urlpatterns = patterns('',
+    (r'^$', redirect2projects),
     url(r'^projects/$', 'common.views.manage_projects', name='manage-projects'),
     url(r'^designer/$', 'ui.views.main', name='main'),
     url(r'^designer/application-add/$', 'ui.views.ajax_add_application', name='application-add'),
