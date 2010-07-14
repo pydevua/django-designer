@@ -2,7 +2,12 @@
 
 {% block title %}Projects{% endblock %}
 
+{% block sidebar %}{% endblock sidebar %}
+
 {% block content %}
+<style>
+textarea { width: 200px; height: 60px; }
+</style>
 	<h1>Projects</h1>
 	
 	Create new project
@@ -14,7 +19,7 @@
 	Or pick from existing:
 	<div>
 	{% for proj in projects %}
-		<a href="./?pick={{ proj.pk }}">{{ proj }}</a><br>
+		<a href="./?pick={{ proj.pk }}"><strong>{{ proj }}</strong></a><br>
 	{% empty %}
 		No projects
 	{% endfor %}
