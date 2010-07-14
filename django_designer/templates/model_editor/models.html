@@ -1,0 +1,41 @@
+<script>
+$(function(){
+	new_model_form();
+})
+</script>
+
+{{ request.project }} > {{ application }}
+
+<h1>{{ application }}</h1>
+<a href="{% url app-models-code application.pk %}" class="ajaxbox">Get code</a>
+
+<br><br>
+
+
+<a href="#" id="add_model" class="addlink">Add model</a>
+
+<div style="display: none;" id="add_model_form">
+	<form method="POST" action="{% url new-model application.pk %}">
+		<input type="text" name="name">
+		<input type="submit" value="Save">
+	</form>
+</div>
+
+
+
+<table>
+<tr>
+	<th>Model</th>
+	<th>Comments</th>
+	<th> </th>
+	<th> </th>
+</tr>
+{% for model in application.model_set.all %}
+<tr>
+	<td><a href="{% url edit-model model.pk %}" class="ajax changelink">{{ model }}</a></td>
+	<td>{{ model.comments }}</td>
+	<td><a href="{% url model-code model.pk %}" class="ajaxbox">Code</a></td>
+	<td><a href="#" class="deletelink">Delete</a> </td>
+</tr>
+{% endfor %}
+<table>

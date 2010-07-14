@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+	<h1>Projects</h1>
+	
+	Create new project
+	<form method="POST">
+		<table>{{ form }}</table>
+		<input type="submit" value="Create">
+	</form>
+	
+	Or pick from existing:
+	<div>
+	{% for proj in projects %}
+		<a href="./?pick={{ proj.pk }}">{{ proj }}</a><br>
+	{% empty %}
+		No projects
+	{% endfor %}
+	</div>
+
+{% endblock content %}

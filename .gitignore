@@ -1,0 +1,5 @@
+*.pyc
+*.*~
+database.db
+django
+.DS_Store

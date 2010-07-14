@@ -1,0 +1,5 @@
+<ul>
+{% for app in request.project.applications.all %}
+	<li><a href="{% url application-models app.id %}" class="ajax">{{ app }}</a></li>
+{% endfor %}
+</ul>

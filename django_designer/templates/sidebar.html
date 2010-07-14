@@ -1,0 +1,14 @@
+
+
+<h3>Applications</h3>
+<div id="app_list">
+	{% include "applications.html" %}
+</div>
+
+<a href="#add" id="add_app" class="addlink">Add application</a>
+<div id="add_app_form" style="display:none;">
+<form method="POST" action="{% url application-add %}">
+	<input type="text" name="name">
+	<input type="submit" value="Save">
+</form>
+</div>

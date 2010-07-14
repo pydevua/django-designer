@@ -1,0 +1,34 @@
+<script>
+$(function(){
+	edit_model_form();
+})
+</script>
+
+{{ request.project }} > {{ model.application }} > {{ model }}
+
+<h1>{{ model }}</h1>
+
+<a href="{% url model-code model.pk %}" class="ajaxbox">Code</a>
+
+<div id="edit_model_form">
+	<form method="POST" action="{% url edit-model model.pk %}">
+	<input type="submit" value="Save">
+	<table>{{ form }}</table>
+
+	
+	{{ field_formset.management_form }}
+	
+	<div>
+	{% for form in field_formset.forms %}
+		<div>
+		{% for field in form %}
+			{{ field.errors }}
+			{{ field }}
+		{% endfor %}
+		</div>
+	{% endfor %}
+	</div>
+	
+	<input type="submit" value="Save">
+	</form>
+</div>
