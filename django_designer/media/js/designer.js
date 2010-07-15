@@ -17,11 +17,11 @@ function new_model_form() {
 
 
 function model_editor() {
-	/*
+	//*
 	$('#edit_model_form form').ajaxForm({ 
 		target: '#content'
     });
-    */
+    //*/
 	
 	//Attributes popup
 	$('.field-line .field input, .field-line .field select').focus(function(){
