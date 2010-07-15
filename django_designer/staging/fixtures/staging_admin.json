@@ -1,0 +1,28 @@
+[
+ {
+  "pk": 1,
+  "model": "auth.user",
+  "fields": {
+   "username": "admin",
+   "first_name": "",
+   "last_name": "",
+   "is_active": true,
+   "is_superuser": true,
+   "is_staff": true,
+   "last_login": "2010-07-15 06:34:15",
+   "groups": [],
+   "user_permissions": [],
+   "password": "sha1$8168d$9b86b6e210fe4f8a20735f029f2e6cda9ab198da",
+   "email": "admin@mail.net",
+   "date_joined": "2010-05-29 06:34:03"
+  }
+ },
+ {
+    "pk": 1, 
+    "model": "sites.site", 
+    "fields": {
+        "domain": "127.0.0.1:8000", 
+        "name": "localhost:8000"
+    }
+ }
+]

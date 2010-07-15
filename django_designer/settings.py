@@ -89,10 +89,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     
+    'staging',
+    
     'common',
     'model_editor',
     'utils',
-
 )
 
 #Logger setup
