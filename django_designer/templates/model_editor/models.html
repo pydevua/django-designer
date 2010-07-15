@@ -32,7 +32,7 @@ $(function(){
 </tr>
 {% for model in application.model_set.all %}
 <tr>
-	<td><a href="{% url edit-model model.pk %}" class="ajax changelink">{{ model }}</a></td>
+	<td><a href="{% url edit-model model.pk %}" class="ajax changelink">{{ model.name }}</a></td>
 	<td>{{ model.comments }}</td>
 	<td><a href="{% url model-code model.pk %}" class="ajaxbox">Code</a></td>
 	<td><a href="#" class="deletelink">Delete</a> </td>
