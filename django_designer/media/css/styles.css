@@ -1,0 +1,40 @@
+.field-line {
+	width: 740px;
+	cursor: move;
+}
+
+.field-line .field {
+	float: left;
+}
+
+.f_name {
+ 	width: 200px;
+ 	margin-left: 24px;
+}
+
+.f_type {
+	width: 200px;
+}
+
+.f_relation {
+	width: 200px;
+}
+
+
+.f_null, .f_blank, .f_DELETE {
+	width: 20px;
+}
+
+.attrs_popup {
+	position: absolute;
+	left: 200px;
+	background-color: lightgray;
+	display: none;
+	height: 300px;
+	overflow: scroll;
+	cursor: default !important;
+}
+
+
+
+

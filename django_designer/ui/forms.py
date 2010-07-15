@@ -66,7 +66,28 @@ class FieldForm(forms.ModelForm):
     class Meta:
         model = Field
         exclude = ('model',)
-    sort_order = forms.IntegerField(required=False, widget=forms.HiddenInput)
+    sort_order = forms.IntegerField(required=False
+                                    , widget=forms.HiddenInput(attrs={'class':'sort_field'}))
+    
+    POPUP_FIELDS = ('verbose_name', 'primary_key', 'max_length', 'unique', 
+                    'db_index', 'default', 'editable', 'help_text', 'auto_now', 
+                    'auto_now_add', 'max_digits', 'decimal_places', 'verify_exists', 
+                    'upload_to', 'related_name', 'to_field')
+    
+    def __init__(self, *args, **kwargs):
+        super(FieldForm, self). __init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            if name in FieldForm.POPUP_FIELDS:
+                field.label = name
+    
+    def visible_fields(self):
+        return [field for field in self if \
+                                    (not field.is_hidden) \
+                                    and (not field.name in FieldForm.POPUP_FIELDS)]
+    
+    def popup_fields(self):
+        return [field for field in self if field.name in FieldForm.POPUP_FIELDS]
+    
 
 
 ModelFieldFormSet = modelformset_factory(Field, extra=3, can_delete=True, form=FieldForm)

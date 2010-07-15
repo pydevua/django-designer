@@ -1,31 +1,79 @@
+{% if not request.is_ajax %}
+{# for DEBUG! #}
+{% load adminmedia i18n %}
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% admin_media_prefix %}css/base.css{% endblock %}" />
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/styles.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+<script type="text/javascript" src="{% admin_media_prefix %}js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/designer.js?t={% now "YmdHis"%}"></script>
+{% endif %}
 <script>
 $(function(){
-	edit_model_form();
+	model_editor();
 })
 </script>
 
-{{ request.project }} > {{ model.application }} > {{ model }}
+{{ request.project }} > {{ model.application }} > {{ model.name }}
 
-<h1>{{ model }}</h1>
+<h1>{{ model.name }}</h1>
 
 <a href="{% url model-code model.pk %}" class="ajaxbox">Code</a>
+
+
 
 <div id="edit_model_form">
 	<form method="POST" action="{% url edit-model model.pk %}">
 	<input type="submit" value="Save">
 	<table>{{ form }}</table>
 
+{% if field_formset.errors %}
+	<h4 style="color: red;">Please correct errors below</h4>
+{% endif %}
 	
 	{{ field_formset.management_form }}
 	
 	<div>
+		<div class="field-line head">
+			<div class="field f_name">Name</div>
+			<div class="field f_name">Type</div>
+			<div class="field f_name"> &nbsp; </div>
+			<div class="field f_null">N</div>
+			<div class="field f_blank">B</div>
+			<div class="field f_DELETE">X</div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+	<div class="model-fields">
 	{% for form in field_formset.forms %}
-		<div>
-		{% for field in form %}
+	<div class="field-line">
+		{% for field in form.hidden_fields %}
 			{{ field.errors }}
 			{{ field }}
 		{% endfor %}
+		
+		{% for field in form.visible_fields %}
+		<div class="field f_{{field.name}}">
+			{{ field.errors }}
+			{{ field }}
 		</div>
+		{% endfor %}
+		<div style="clear: both;"></div>
+		
+		<div class="attrs_popup" style="">
+		<table>
+		{% for field in form.popup_fields %}
+			<tr>
+				<th>{{ field.label_tag }}</th>
+				<td>{{ field.errors }}{{ field }}{{ field.help_text }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+		</div>
+	</div>
 	{% endfor %}
 	</div>
 	

@@ -6,8 +6,10 @@
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% admin_media_prefix %}css/base.css{% endblock %}" />
 <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
 
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/styles.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
 <script type="text/javascript" src="{% admin_media_prefix %}js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.2.custom.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/designer.js?t={% now "YmdHis"%}"></script>
