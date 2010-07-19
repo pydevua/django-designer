@@ -1,0 +1,407 @@
+[
+ {
+  "pk": 1, 
+  "model": "common.project", 
+  "fields": {
+   "name": "project1", 
+   "description": ""
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "common.application", 
+  "fields": {
+   "is_django": true, 
+   "is_external": true, 
+   "package": "django.contrib", 
+   "description": null, 
+   "project": 1, 
+   "name": "admin"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "common.application", 
+  "fields": {
+   "is_django": true, 
+   "is_external": true, 
+   "package": "django.contrib", 
+   "description": null, 
+   "project": 1, 
+   "name": "auth"
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "common.application", 
+  "fields": {
+   "is_django": true, 
+   "is_external": true, 
+   "package": "django.contrib", 
+   "description": null, 
+   "project": 1, 
+   "name": "contenttypes"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "common.application", 
+  "fields": {
+   "is_django": true, 
+   "is_external": true, 
+   "package": "django.contrib", 
+   "description": null, 
+   "project": 1, 
+   "name": "sessions"
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "common.application", 
+  "fields": {
+   "is_django": true, 
+   "is_external": true, 
+   "package": "django.contrib", 
+   "description": null, 
+   "project": 1, 
+   "name": "sites"
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "common.application", 
+  "fields": {
+   "is_django": true, 
+   "is_external": true, 
+   "package": "django.contrib", 
+   "description": null, 
+   "project": 1, 
+   "name": "messages"
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "common.application", 
+  "fields": {
+   "is_django": false, 
+   "is_external": false, 
+   "package": "", 
+   "description": "", 
+   "project": 1, 
+   "name": "blogs"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 1, 
+   "name": "LogEntry", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 2, 
+   "name": "Permission", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 2, 
+   "name": "Group", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 2, 
+   "name": "User", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 2, 
+   "name": "Message", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 3, 
+   "name": "ContentType", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 4, 
+   "name": "Session", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 8, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": null, 
+   "application": 5, 
+   "name": "Site", 
+   "comments": null, 
+   "is_external": true
+  }
+ }, 
+ {
+  "pk": 9, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": "def save(self, *args, **kwargs):\n   super(Post, self).save(*args, **kwargs)\n   print 'it works!'", 
+   "application": 7, 
+   "name": "Post", 
+   "comments": "Blog post", 
+   "is_external": false
+  }
+ }, 
+ {
+  "pk": 10, 
+  "model": "model_editor.model", 
+  "fields": {
+   "custom_code": "", 
+   "application": 7, 
+   "name": "Comment", 
+   "comments": "", 
+   "is_external": false
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "model_editor.field", 
+  "fields": {
+   "related_name": "", 
+   "sort_order": 1, 
+   "relation": null, 
+   "max_digits": null, 
+   "blank": false, 
+   "help_text": "", 
+   "null": false, 
+   "db_index": false, 
+   "primary_key": false, 
+   "to_field": "", 
+   "upload_to": "", 
+   "max_length": 255, 
+   "verbose_name": "", 
+   "verify_exists": true, 
+   "auto_now": false, 
+   "editable": false, 
+   "auto_now_add": false, 
+   "unique": false, 
+   "name": "title", 
+   "decimal_places": null, 
+   "default": "", 
+   "type": "CharField", 
+   "model": 9
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "model_editor.field", 
+  "fields": {
+   "related_name": "", 
+   "sort_order": 2, 
+   "relation": null, 
+   "max_digits": null, 
+   "blank": false, 
+   "help_text": "", 
+   "null": false, 
+   "db_index": false, 
+   "primary_key": false, 
+   "to_field": "", 
+   "upload_to": "", 
+   "max_length": null, 
+   "verbose_name": "", 
+   "verify_exists": true, 
+   "auto_now": false, 
+   "editable": false, 
+   "auto_now_add": false, 
+   "unique": false, 
+   "name": "body", 
+   "decimal_places": null, 
+   "default": "", 
+   "type": "TextField", 
+   "model": 9
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "model_editor.field", 
+  "fields": {
+   "related_name": "", 
+   "sort_order": 3, 
+   "relation": null, 
+   "max_digits": null, 
+   "blank": false, 
+   "help_text": "", 
+   "null": false, 
+   "db_index": false, 
+   "primary_key": false, 
+   "to_field": "", 
+   "upload_to": "", 
+   "max_length": 255, 
+   "verbose_name": "", 
+   "verify_exists": true, 
+   "auto_now": false, 
+   "editable": false, 
+   "auto_now_add": false, 
+   "unique": false, 
+   "name": "tags", 
+   "decimal_places": null, 
+   "default": "", 
+   "type": "CharField", 
+   "model": 9
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "model_editor.field", 
+  "fields": {
+   "related_name": "", 
+   "sort_order": 4, 
+   "relation": 4, 
+   "max_digits": null, 
+   "blank": false, 
+   "help_text": "", 
+   "null": false, 
+   "db_index": false, 
+   "primary_key": false, 
+   "to_field": "", 
+   "upload_to": "", 
+   "max_length": null, 
+   "verbose_name": "", 
+   "verify_exists": true, 
+   "auto_now": false, 
+   "editable": false, 
+   "auto_now_add": false, 
+   "unique": false, 
+   "name": "author", 
+   "decimal_places": null, 
+   "default": "", 
+   "type": "ForeignKey", 
+   "model": 10
+  }
+ }, 
+ {
+  "pk": 5, 
+  "model": "model_editor.field", 
+  "fields": {
+   "related_name": "", 
+   "sort_order": 5, 
+   "relation": 9, 
+   "max_digits": null, 
+   "blank": false, 
+   "help_text": "", 
+   "null": false, 
+   "db_index": false, 
+   "primary_key": false, 
+   "to_field": "", 
+   "upload_to": "", 
+   "max_length": null, 
+   "verbose_name": "", 
+   "verify_exists": true, 
+   "auto_now": false, 
+   "editable": false, 
+   "auto_now_add": false, 
+   "unique": false, 
+   "name": "post", 
+   "decimal_places": null, 
+   "default": "", 
+   "type": "ForeignKey", 
+   "model": 10
+  }
+ }, 
+ {
+  "pk": 6, 
+  "model": "model_editor.field", 
+  "fields": {
+   "related_name": "", 
+   "sort_order": 6, 
+   "relation": null, 
+   "max_digits": null, 
+   "blank": false, 
+   "help_text": "", 
+   "null": false, 
+   "db_index": false, 
+   "primary_key": false, 
+   "to_field": "", 
+   "upload_to": "", 
+   "max_length": null, 
+   "verbose_name": "", 
+   "verify_exists": true, 
+   "auto_now": false, 
+   "editable": false, 
+   "auto_now_add": false, 
+   "unique": false, 
+   "name": "message", 
+   "decimal_places": null, 
+   "default": "", 
+   "type": "TextField", 
+   "model": 10
+  }
+ }, 
+ {
+  "pk": 7, 
+  "model": "model_editor.field", 
+  "fields": {
+   "related_name": "", 
+   "sort_order": 7, 
+   "relation": null, 
+   "max_digits": null, 
+   "blank": false, 
+   "help_text": "", 
+   "null": false, 
+   "db_index": false, 
+   "primary_key": false, 
+   "to_field": "", 
+   "upload_to": "", 
+   "max_length": null, 
+   "verbose_name": "", 
+   "verify_exists": true, 
+   "auto_now": false, 
+   "editable": false, 
+   "auto_now_add": true, 
+   "unique": false, 
+   "name": "timestamp", 
+   "decimal_places": null, 
+   "default": "", 
+   "type": "DateTimeField", 
+   "model": 10
+  }
+ }
+]

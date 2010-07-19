@@ -81,6 +81,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     "django_code.context.variables",
+    "model_editor.context.project_models",
 )
 
 INSTALLED_APPS = (

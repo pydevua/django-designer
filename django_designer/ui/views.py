@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
 from utils.views import render_to, render_json
 from common.models import Application
-from model_editor.models import Model, Field
-from forms import ApplicationForm, NewModelForm, EditModelForm, ModelFieldFormSet
-from django.core.urlresolvers import reverse
+from model_editor.models import Model
+from model_editor.forms import NewModelForm, EditModelForm, ModelFieldFormSet
+from forms import ApplicationForm
+
 
 
 #TODO: get_object_or_404 in ajax views shold be replaced with some other solution

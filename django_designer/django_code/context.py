@@ -1,4 +1,8 @@
-from models import FIELD_ATTRIBUTES
+from models import FIELD_ATTRIBUTES, FIELD_TYPES, COMMON_ATTRIBUTES
 
 def variables(requst):
-    return {'FIELD_ATTRIBUTES': FIELD_ATTRIBUTES}
+    return {
+        'FIELD_ATTRIBUTES': FIELD_ATTRIBUTES,
+        'COMMON_ATTRIBUTES': COMMON_ATTRIBUTES,
+        'FIELD_TYPES': FIELD_TYPES,
+    }

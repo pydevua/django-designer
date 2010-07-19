@@ -12,3 +12,4 @@ class Command(BaseCommand):
         #      all fixtures in staging should starts with "staging_" prefix
         options = kwargs.get('options', {})
         call_command('loaddata', 'staging_admin', **options)
+        call_command('loaddata', 'staging_models', **options)

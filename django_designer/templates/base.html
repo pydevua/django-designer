@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
-{% load adminmedia i18n %}
+{% load adminmedia i18n util_tags %}
 <head>
 <title>Django Designer {% block title %}{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% admin_media_prefix %}css/base.css{% endblock %}" />
@@ -8,11 +8,21 @@
 
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/styles.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/jquery-ui/jquery-ui-1.8.2.custom.css" media="screen" />
+
+<script type="text/javascript">
+var FIELD_TYPES = {{ FIELD_TYPES|json }};
+var COMMON_ATTRIBUTES = {{ COMMON_ATTRIBUTES|json }};
+</script>
+
 <script type="text/javascript" src="{% admin_media_prefix %}js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.2.custom.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/designer.js?t={% now "YmdHis"%}"></script>
+
+
+
 {% block extrahead %}{% endblock %}
 </head>
 
@@ -80,29 +90,3 @@
 
 </body>
 </html>
-
-{% comment %}
-{% load adminmedia %}
-<html>
-<head>
-	<title>Django Designer {% block title %}{% endblock %}</title>
-	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
-	
-	<script type="text/javascript" src="{% admin_media_prefix %}js/jquery.min.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/designer.js?t={% now "YmdHis"%}"></script>
-	{% block extra_head %}{% endblock extra_head %}
-</head>
-<body>
-<div style="widht: 200px; float: left;" id="sidebar">
-{% block sidebar %}
-	{% include "sidebar.html" %}
-{% endblock sidebar %}
-</div>
-<div style="widht: 500px; float: left;" id="content">
-{% block content %}{% endblock content %}
-</div>
-</body>
-</html>
-{% endcomment %}

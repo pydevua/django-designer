@@ -1,6 +1,5 @@
 .field-line {
 	width: 740px;
-	cursor: move;
 }
 
 .field-line .field {
@@ -9,7 +8,6 @@
 
 .f_name {
  	width: 200px;
- 	margin-left: 24px;
 }
 
 .f_type {
@@ -21,8 +19,17 @@
 }
 
 
-.f_null, .f_blank, .f_DELETE {
+.f_null, .f_blank, .f_unique, .f_DELETE {
 	width: 20px;
+}
+.f_DELETE {
+	width: 30px !important;
+	padding-left: 10px;
+}
+
+.handle {
+	cursor: move;
+	float: left;
 }
 
 .attrs_popup {

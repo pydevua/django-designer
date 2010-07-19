@@ -5,8 +5,17 @@
 {% load adminmedia i18n %}
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% admin_media_prefix %}css/base.css{% endblock %}" />
 <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
+
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/styles.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/jquery-ui/jquery-ui-1.8.2.custom.css" media="screen" />
+
+
+<script type="text/javascript">
+var FIELD_TYPES = {{ FIELD_TYPES|json }};
+var COMMON_ATTRIBUTES = {{ COMMON_ATTRIBUTES|json }};
+</script>
+
 <script type="text/javascript" src="{% admin_media_prefix %}js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.2.custom.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.form.js"></script>
@@ -15,6 +24,7 @@
 {% endif %}
 <script>
 var FIELD_ATTRIBUTES = {{ FIELD_ATTRIBUTES|json }};
+var MODELS = {{ MODELS|json }};
 
 $(function() {
 	model_editor();
@@ -32,7 +42,16 @@ $(function() {
 <div id="edit_model_form">
 	<form method="POST" action="{% url edit-model model.pk %}">
 	<input type="submit" value="Save">
-	<table>{{ form }}</table>
+	<table>
+	<tr>
+		<th>{{ form.name.label_tag }}</th>
+		<td>{{ form.name.errors }}{{ form.name }}{{ form.name.help_text }}</td>
+	</tr>
+	<tr>
+		<th>{{ form.comments.label_tag }}</th>
+		<td>{{ form.comments.errors }}{{ form.comments }}{{ form.comments.help_text }}</td>
+	</tr>
+	</table>
 
 {% if field_formset.errors %}
 	<h4 style="color: red;">Please correct errors below</h4>
@@ -42,11 +61,13 @@ $(function() {
 	
 	<div>
 		<div class="field-line head">
+			<div class="handle ui-icon ui-icon-grip-dotted-vertical">&nbsp;</div>
 			<div class="field f_name">Name</div>
 			<div class="field f_name">Type</div>
 			<div class="field f_name"> &nbsp; </div>
 			<div class="field f_null">N</div>
 			<div class="field f_blank">B</div>
+			<div class="field f_unique">U</div>
 			<div class="field f_DELETE">X</div>
 			<div style="clear: both;"></div>
 		</div>
@@ -54,12 +75,13 @@ $(function() {
 	<div class="model-fields">
 	{% for form in field_formset.forms %}
 	<div class="field-line">
+		<div class="handle ui-icon ui-icon-grip-dotted-vertical">&nbsp;</div>
 		{% for field in form.hidden_fields %}
 			{{ field.errors }}
 			{{ field }}
 		{% endfor %}
 		
-		{% for field in form.visible_fields %}
+		{% for field in form.grid_fields %}
 		<div class="field f_{{field.name}}">
 			{{ field.errors }}
 			{{ field }}
@@ -67,10 +89,11 @@ $(function() {
 		{% endfor %}
 		<div style="clear: both;"></div>
 		
-		<div class="attrs_popup" style="">
+		<div class="attrs_popup">
+		<a href="#" style="float: right;" onclick="$(this).parent().hide();return false;">X</a>
 		<table>
 		{% for field in form.popup_fields %}
-			<tr>
+			<tr class="{{ field.name }}">
 				<th>{{ field.label_tag }}</th>
 				<td>{{ field.errors }}{{ field }}{{ field.help_text }}</td>
 			</tr>
@@ -80,6 +103,15 @@ $(function() {
 	</div>
 	{% endfor %}
 	</div>
+	
+	<table>
+	<tr>
+		<td>
+			{{ form.custom_code.help_text }}<br>
+			{{ form.custom_code.errors }}{{ form.custom_code }}
+		</td>
+	</tr>
+	</table>
 	
 	<input type="submit" value="Save">
 	</form>

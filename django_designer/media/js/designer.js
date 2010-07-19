@@ -37,7 +37,7 @@ function model_editor() {
 	});
 	
 	//Sorting fields
-	$('.model-fields').sortable();
+	$('.model-fields').sortable({ handle: '.handle' });
 	$( ".model-fields" ).bind("sortstop", function(event, ui) {
 		var sort_val = 0;
 		$('.model-fields input.sort_field').each(function() {
@@ -47,6 +47,40 @@ function model_editor() {
 			}
 		})
 	});
+	
+	//Fields autocomplete
+	var models = new Array();
+	for (var i=0; i<MODELS.length; i++) {
+		models.push({id:MODELS[i].pk, value:MODELS[i].name})
+	}
+	function on_item_select(event, ui) {
+		if (ui.item)
+			$(this).parent().find('input:hidden').val(ui.item.id)
+		else
+			$(this).parent().find('input:hidden').val('')
+	}
+	$('.f_relation input.autocomplete').autocomplete({
+		source: models,
+		select: on_item_select,
+		change: on_item_select
+	});
+	
+	//*
+	//Field attributes
+	function process_attrs() {
+		var visible = COMMON_ATTRIBUTES;
+		if (FIELD_ATTRIBUTES[$(this).val()]) {
+			visible = visible.concat(FIELD_ATTRIBUTES[$(this).val()]);
+		}
+		$(this).parent().parent().find('.attrs_popup table tr').each(function(){
+			if (visible.indexOf($(this).attr('class')) == -1)
+				$(this).hide()
+			else
+				$(this).show()
+		})
+	}
+	$('.f_type select').each(process_attrs).change(process_attrs)
+	//*/
 
 }
 
