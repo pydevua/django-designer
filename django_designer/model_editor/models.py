@@ -1,4 +1,5 @@
 from django.db import models
+from django_code.models import FIELD_TYPES
 from common.models import Application
 from utils.models import SortableModel
 
@@ -7,6 +8,7 @@ class Model(models.Model):
     name = models.CharField(max_length=150)
     application = models.ForeignKey(Application)
     comments = models.TextField(null=True, blank=True)
+    custom_code = models.TextField(null=True, blank=True, help_text="Custom lines of class code")
     is_external = models.BooleanField(default=False)
     
     class Meta:
@@ -15,16 +17,6 @@ class Model(models.Model):
     def __unicode__(self):
         return u'%s.%s' %(self.application.name, self.name)
 
-FIELD_TYPES = ['CharField',
-               'ForeignKey', 'OneToOneField','ManyToManyField',
-               'AutoField', 'BigIntegerField', 'BooleanField', 
-               'CommaSeparatedIntegerField', 'DateField', 'DateTimeField',
-               'DecimalField', 'EmailField', 'FileField', 'FilePathField',
-               'FloatField', 'ImageField', 'IntegerField',  'TextField',
-               'IntegerField', 'IPAddressField', 'NullBooleanField',
-               'PositiveIntegerField', 'PositiveSmallIntegerField',
-               'SlugField', 'SmallIntegerField', 'TextField', 'TimeField',
-               'URLField', 'XMLField']
 
 FIELD_TYPE_CHOICES = [(i,i) for i in FIELD_TYPES]
 

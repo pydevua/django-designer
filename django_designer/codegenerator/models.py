@@ -17,7 +17,10 @@ def model_code(model):
         model_class.append('"""%s"""' % model.comments)#TODO: handle quotes in comments, make it like a method(CommentsCode(CodeBlock))
     for field in model.field_set.all():
         model_class.append(model_field_code(field))
-    if model.field_set.all().count() == 0:
+    if model.custom_code:
+        lines = [''] + model.custom_code.split('\n')
+        model_class.extend(lines)
+    if model.field_set.all().count() == 0 and not model.custom_code:
         model_class.append('pass')
     return code
 
