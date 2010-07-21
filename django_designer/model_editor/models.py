@@ -3,6 +3,7 @@ from django_code.models import FIELD_TYPES
 from common.models import Application
 from utils.models import SortableModel
 
+
 class Model(models.Model):
     "Django model"
     name = models.CharField(max_length=150)
@@ -16,6 +17,15 @@ class Model(models.Model):
     
     def __unicode__(self):
         return u'%s.%s' %(self.application.name, self.name)
+
+
+class UniqueTogether(models.Model):
+    "Model.Meta.unique_together"
+    model = models.ForeignKey(Model, related_name='unique_together')
+    fields = models.ManyToManyField('Field')
+    
+    def __unicode__(self):
+        return ', '.join([f.name for f in self.fields.all()])
 
 
 FIELD_TYPE_CHOICES = [(i,i) for i in FIELD_TYPES]

@@ -1,0 +1,23 @@
+<script>
+$(function(){
+	$('form#unique_togeter_fields').ajaxForm({ 
+        dataType: 'json',  
+        success: function(data){
+        	if (data.error) {
+            	alert(data.error)
+            	return;
+        	}
+			$('#unique_together ul').html(data.html);
+			$.fancybox.close();
+		}
+	})
+})
+</script>
+<div style="width: 300px; height: 300px;">
+	<h3>Add unique-together fields</h3>
+	Select fields that need to be unique together:
+	<form method="POST" id="unique_togeter_fields" action="{% url unique-together-add form.model.pk %}">
+		<table>{{ form }}</table>
+		<input type="submit" value="Save">
+	</form>
+</div>

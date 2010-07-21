@@ -104,6 +104,15 @@ $(function() {
 	{% endfor %}
 	</div>
 	
+	<strong>Meta</strong>
+	<div id="unique_together">
+		unique together:<br>
+		<a href="{% url unique-together-add model.pk %}" class="ajaxbox">Add</a>
+		<ul>
+		{% include "model_editor/unique_together_list.html" %}
+		</ul>
+	</div>
+	
 	<table>
 	<tr>
 		<td>

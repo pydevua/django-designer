@@ -1,0 +1,3 @@
+{% for item in model.unique_together.all %}
+	<li>{{ item }} <a href="{% url unique-together-remove item.pk %}" class="deletelink ajax" target="#unique_together ul">remove</a></li>
+{% endfor %}

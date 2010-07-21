@@ -4,6 +4,11 @@ from django.http import HttpResponse
 from django.utils import simplejson
 
 
+class JSONResponse(HttpResponse):
+    def __init__(self, data):
+        output = simplejson.dumps(data)
+        super(JSONResponse, self).__init__(output, mimetype="text/javascript")
+
 def render_to(template):
     """
     Decorator for Django views that sends returned dict to render_to_response function
@@ -35,7 +40,5 @@ def render_json(func):
         data = func(request, *args, **kw)
         if isinstance(data, HttpResponse):
             return data
-
-        output = simplejson.dumps(data)
-        return HttpResponse(output, mimetype="text/javascript")
+        return JSONResponse(data)
     return wrapper

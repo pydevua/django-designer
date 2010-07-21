@@ -2,7 +2,7 @@ from django import forms
 from django.utils.safestring import mark_safe
 from django.utils.html import escape
 from django.forms.models import modelformset_factory
-from models import Model, Field
+from models import Model, Field, UniqueTogether
 
 
 class NewModelForm(forms.ModelForm):
@@ -92,3 +92,31 @@ class FieldForm(forms.ModelForm):
 
 
 ModelFieldFormSet = modelformset_factory(Field, extra=3, can_delete=True, form=FieldForm)
+
+
+
+class UniqueTogetherForm(forms.ModelForm):
+    class Meta:
+        model = UniqueTogether
+        fields = ('fields',)
+    fields = forms.ModelMultipleChoiceField(queryset=Field.objects.all(), label=''
+                                            , widget=forms.CheckboxSelectMultiple())
+    
+    def __init__(self, data=None, model=None):
+        assert model is not None
+        self.model = model
+        super(UniqueTogetherForm, self).__init__(data)
+        self.fields['fields'].queryset = model.field_set
+    
+    def save(self, commit=True):
+        self.instance.model = self.model
+        return super(UniqueTogetherForm, self).save(commit) 
+    
+    def clean_fields(self):
+        value = self.cleaned_data.get('fields')
+        if not value:
+            return value
+        if len(value) < 2:
+            raise forms.ValidationError("Select at least 2 fields")
+        return value
+    
