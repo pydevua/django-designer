@@ -31,5 +31,4 @@ FIELD_ATTRIBUTES = {
     'OneToOneField':    ['related_name', 'to_field'],
     'ForeignKey':       ['related_name', 'to_field'],
     'ManyToManyField':  ['related_name', 'to_field'],
-    'OneToOneField':    ['related_name', 'to_field'],
 }
