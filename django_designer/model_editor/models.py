@@ -44,7 +44,7 @@ class Field(SortableModel):
     unique = models.BooleanField() 
     db_index = models.BooleanField()
     default = models.CharField(max_length=250, null=True, blank=True)
-    editable = models.BooleanField()
+    editable = models.BooleanField(default=True)
     help_text = models.CharField(max_length=250, null=True, blank=True)
     
     #Date/Time fields
