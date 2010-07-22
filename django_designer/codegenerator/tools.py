@@ -68,3 +68,9 @@ class CodeBlock(list):
                     yield l
             else:
                 raise Exception('Unsupported item %s' % line)
+
+
+def code_string(s, qout="'"):
+    if qout in s:
+        s = s.replace(qout, '\\%s' % qout)
+    return '%s%s%s' % (qout, s, qout)
