@@ -81,7 +81,7 @@ class FieldCode(object):
         if not self.field.editable:
             attributes.append('editable=False')
         if self.field.default:
-            val = code_string(self.field.verbose_name)
+            val = code_string(self.field.default)
             if self.field.type in ('BigIntegerField', 'BooleanField', 'FloatField', 'IntegerField', 'IntegerField','NullBooleanField','PositiveIntegerField', 'PositiveSmallIntegerField','SmallIntegerField'):
                 val = self.field.default
             attributes.append('default=%s' % val)
