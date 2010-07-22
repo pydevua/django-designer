@@ -55,6 +55,7 @@ $(function() {
 
 {% if field_formset.errors %}
 	<h4 style="color: red;">Please correct errors below</h4>
+	{{ field_formset.non_form_errors }}
 {% endif %}
 	
 	{{ field_formset.management_form }}

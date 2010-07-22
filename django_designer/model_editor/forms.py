@@ -91,7 +91,20 @@ class FieldForm(forms.ModelForm):
         return [self[f] for f in FieldForm.POPUP_FIELDS]
 
 
-ModelFieldFormSet = modelformset_factory(Field, extra=3, can_delete=True, form=FieldForm)
+class BaseFieldFormSet(forms.models.BaseModelFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+        primary_keys = []
+        for form in self.forms:
+            if form.cleaned_data.get('primary_key'):
+                primary_keys.append(form.cleaned_data['name'])
+        if len(primary_keys) > 1:
+            raise forms.ValidationError('Only one primary key allowed (curently: %s)' % ','.join(primary_keys))
+
+
+ModelFieldFormSet = modelformset_factory(Field, extra=4, can_delete=True, 
+                                         form=FieldForm, formset=BaseFieldFormSet)
 
 
 
