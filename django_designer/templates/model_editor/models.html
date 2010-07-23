@@ -1,6 +1,15 @@
 <script>
 $(function(){
 	new_model_form();
+	$('.model-list a.deletelink').click(function() {
+		if (!confirm('Delete this model?'))
+			return false;
+		var link = $(this)
+		$.get($(this).attr('href'), function(data){
+			link.parent().parent().fadeOut('fast')
+		}, 'json');
+		return false;
+	});
 })
 </script>
 
@@ -23,7 +32,7 @@ $(function(){
 
 
 
-<table>
+<table class="model-list">
 <tr>
 	<th>Model</th>
 	<th>Comments</th>
@@ -35,7 +44,7 @@ $(function(){
 	<td><a href="{% url edit-model model.pk %}" class="ajax changelink">{{ model.name }}</a></td>
 	<td>{{ model.comments }}</td>
 	<td><a href="{% url model-code model.pk %}" class="ajaxbox">Code</a></td>
-	<td><a href="#" class="deletelink">Delete</a> </td>
+	<td><a href="{% url delete-model model.pk %}" class="deletelink">Delete</a> </td>
 </tr>
 {% endfor %}
 <table>

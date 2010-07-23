@@ -47,6 +47,12 @@ def edit_model(request, model_id):
     return {'form': form, 'field_formset': field_formset, 'model':model}
 
 
+def delete_model(request, model_id):
+    model = get_object_or_404(Model, pk=model_id)
+    model.delete()
+    return JSONResponse({'success': True})
+
+
 def _code_response(code):
     return HttpResponse('<div style="width: 500px; height: 400px;"><textarea style="width: 450px; height: 350px;">%s</textarea></div>' % code)
 
